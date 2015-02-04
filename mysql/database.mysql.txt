@@ -1,0 +1,158 @@
+
+CREATE DATABASE IF NOT EXISTS aquanode;
+
+GRANT ALL ON `aquanode`.* to 'anuser'@'localhost' identified by 'mWZwbVCruMsh';
+
+USE aquanode;
+
+CREATE TABLE nodes
+(
+	nodeid int(32) unsigned NOT NULL,
+    
+    dimmer1OnMinute TINYINT unsigned default 0,
+	dimmer1OnHour TINYINT unsigned default 11,
+	dimmer1OffMinute TINYINT unsigned default 0,
+	dimmer1OffHour TINYINT unsigned default 21,
+	dimmer1Delay TINYINT unsigned default 15,
+	dimmer1MaxPWM TINYINT unsigned default 100,
+
+	dimmer2OnMinute TINYINT unsigned default 0,
+	dimmer2OnHour TINYINT unsigned default 11,
+	dimmer2OffMinute TINYINT unsigned default 0,
+	dimmer2OffHour TINYINT unsigned default 21,
+	dimmer2Delay TINYINT unsigned default 15,
+	dimmer2MaxPWM TINYINT unsigned default 100,
+
+	dimmer3OnMinute TINYINT unsigned default 0,
+	dimmer3OnHour TINYINT unsigned default 11,
+	dimmer3OffMinute TINYINT unsigned default 0,
+	dimmer3OffHour TINYINT unsigned default 21,
+	dimmer3Delay TINYINT unsigned default 15,
+	dimmer3MaxPWM TINYINT unsigned default 100,
+
+	configVersion decimal (5,2) default 1,
+	lcdDefaultColor TINYINT default 0,
+	ECProbeType tinyint default 0,
+    
+    primary key (nodeid)
+);
+
+CREATE TABLE nodeData
+(
+	autoid int(32) unsigned NOT NULL auto_increment,
+	nodeid int(32) unsigned NOT NULL,
+    dataTimestamp timestamp not null,
+	pwm1 int(11) default 0,
+	pwm2 int(11) default 0,
+	pwm3 int(11) default 0,
+	temperature decimal(9,2) default 0,
+	disolvedOxygen decimal(9,2) default 0,
+	pH decimal(9,2) default 0,
+	electricalConductivity decimal(9,2) default 0,
+	salinity decimal(9,2) default 0,
+	gravityOfSeawater decimal(9,2) default 0,
+	totalDissolvedSolids decimal(9,2) default 0,
+    
+    
+    FOREIGN KEY (nodeid) REFERENCES nodes (nodeid),
+    
+    primary key (autoid),
+    INDEX `nodeData_nodeid` (nodeid)
+);
+
+CREATE TABLE fishtank
+(
+	tankid INT(32) unsigned NOT NULL auto_increment,
+    tankname VARCHAR(150) NOT NULL,
+    nodeid int(32) unsigned NOT NULL,
+    description TEXT,
+    
+    targetph decimal(9,2) default 7,
+    targettemperature decimal(9,2) default 0,
+    targetdisolvedOxygen decimal(9,2) default 0,
+    targetelectricalConductivity decimal(9,2) default 0,
+    targetsalinity decimal(9,2) default 0,
+    targetgravityOfSeawater decimal(9,2) default 0,
+    targettotalDissolvedSolids decimal(9,2) default 0,
+
+    
+	FOREIGN KEY (nodeid) REFERENCES nodes (nodeid),
+    
+    primary key (tankid)    
+);
+
+CREATE TABLE fishgroup
+(
+	fishgroupid INT(32) unsigned NOT NULL auto_increment,
+    fishgroupCode VARCHAR(5) NOT NULL,
+    fishgroupName VARCHAR(150) NOT NULL,
+    
+    PRIMARY KEY (fishgroupid)
+);
+
+CREATE TABLE images
+(
+	imageid INT(32) unsigned NOT NULL auto_increment,
+    imageName VARCHAR(150),
+    imageData BLOB,
+    
+    PRIMARY KEY (imageid)
+);
+
+CREATE TABLE fish
+(
+	fishid INT(32) unsigned NOT NULL auto_increment,
+    fishgroupid INT(32) unsigned,
+	genus VARCHAR(250) NOT NULL,
+    species VARCHAR(250) NOT NULL,
+	germanTradename VARCHAR(512),
+    englishTradename VARCHAR(512),
+    danishTradename VARCHAR(512),
+    synonyms TEXT,
+    origin TEXT,
+    maxSize VARCHAR(150),
+    temperatureRange VARCHAR(75),
+    phRange VARCHAR(75),
+
+	INDEX (genus),
+	INDEX (genus, species),
+	FOREIGN KEY (fishgroupid) REFERENCES fishgroup (fishgroupid),	
+	primary key (fishid)
+);
+
+CREATE TABLE plants
+(
+	plantid INT(32) unsigned NOT NULL auto_increment,
+
+	primary key (plantid)
+);
+
+CREATE TABLE fishImage
+(
+	fishid INT(32) unsigned NOT NULL,
+    imageid INT(32) unsigned NOT NULL,
+    
+    PRIMARY KEY (fishid, imageid)
+);
+
+CREATE TABLE tankfish
+(
+	tankid INT(32) unsigned NOT NULL,
+    fishid INT(32) unsigned NOT NULL,
+    
+    FOREIGN KEY (fishid) REFERENCES fish (fishid),
+    FOREIGN KEY (tankid) REFERENCES fishtank (tankid),
+    
+    primary key (tankid, fishid)
+);
+
+CREATE TABLE tankplants
+(
+	tankid INT(32) unsigned NOT NULL,
+    plantid INT(32) unsigned NOT NULL,
+    
+	FOREIGN KEY (plantid) REFERENCES plants (plantid),
+    FOREIGN KEY (tankid) REFERENCES fishtank (tankid),
+    
+    primary key (tankid, plantid)
+);
