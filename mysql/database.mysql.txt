@@ -120,11 +120,156 @@ CREATE TABLE fish
 	primary key (fishid)
 );
 
+CREATE TABLE plantgroup
+(
+	id INT(32) unsigned NOT NULL auto_increment,
+    plantgroupCode VARCHAR(5) NOT NULL,
+    plantgroupName VARCHAR(150) NOT NULL,
+    
+    PRIMARY KEY (id)
+);
+INSERT INTO plantgroup (id, plantgroupCode, plantgroupName) VALUES (1, 'AWP', 'Waterplant');
+INSERT INTO plantgroup (id, plantgroupCode, plantgroupName) VALUES (2, 'BPP', 'Pondplant');
+INSERT INTO plantgroup (id, plantgroupCode, plantgroupName) VALUES (3, 'CTP', 'Terrariumplant');
+INSERT INTO plantgroup (id, plantgroupCode, plantgroupName) VALUES (4, 'DLP', 'Landplant');
+ALTER TABLE plantgroup AUTO_INCREMENT=5;
+
+CREATE TABLE plantcare
+(
+	plantcareid INT(32) unsigned NOT NULL,
+	inenglish VARCHAR(150) NOT NULL,
+	otherlanguage VARCHAR(150),
+	
+	PRIMARY KEY (plantcareid)
+);
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (1, 'Easy');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (2, 'Somewhat difficult');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (3, 'Difficult');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (4, 'Very difficult');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (5, 'Multiplying by seeds');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (6, 'Multiplying by topcutting');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (7, 'Multiplying by rhizome');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (8, 'Multiplying only with license');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (9, 'Wet-humid');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (10, 'Moderately humid');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (11, 'High humidity necessary');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (12, 'Hight humidity good');
+INSERT INTO plantcare (plantcareid, inenglish) VALUES (13, 'Needs resting period');
+
+CREATE TABLE plantgrowth
+(
+	plantgrowthid INT(32) unsigned NOT NULL,
+	code VARCHAR(10) NOT NULL,
+	inenglish VARCHAR(150) NOT NULL,
+	otherlanguage VARCHAR(150),
+	
+	PRIMARY KEY (plantgrowthid)
+);
+INSERT INTO plantgrowth (plantgrowthid, code, inenglish) VALUES (1,'~~~~~', 'Very slow');
+INSERT INTO plantgrowth (plantgrowthid, code, inenglish) VALUES (2,'~~', 'Slow');
+INSERT INTO plantgrowth (plantgrowthid, code, inenglish) VALUES (3,'~>~>', 'Moderate');
+INSERT INTO plantgrowth (plantgrowthid, code, inenglish) VALUES (4,'>>', 'Fast');
+INSERT INTO plantgrowth (plantgrowthid, code, inenglish) VALUES (5,'>>>>>', 'Very fast');
+
+CREATE TABLE light
+(
+	lightid INT(32) unsigned NOT NULL,
+	inenglish VARCHAR(150) NOT NULL,
+	otherlanguage VARCHAR(150),
+	
+	PRIMARY KEY (lightid)
+);
+INSERT INTO light (lightid, inenglish) VALUES (1, 'Shade');
+INSERT INTO light (lightid, inenglish) VALUES (2, 'Half shade');
+INSERT INTO light (lightid, inenglish) VALUES (3, 'Middle bright');
+INSERT INTO light (lightid, inenglish) VALUES (4, 'Bright');
+INSERT INTO light (lightid, inenglish) VALUES (5, 'Very bright');
+INSERT INTO light (lightid, inenglish) VALUES (999, 'Unknown');
+
+CREATE TABLE plantcharacteristic
+(
+	id INT(32) unsigned NOT NULL,
+	inenglish VARCHAR(150) NOT NULL,
+	otherlanguage VARCHAR(150),
+	
+	PRIMARY KEY (id)
+);
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (1, 'Algue Stopping');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (2, 'Floating plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (3, 'Swamp plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (4, 'Allows brack water');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (5, 'Not eaten');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (6, 'Knoll plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (7, 'Suitable for ponds');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (8, 'Forms meadows');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (9, 'Front plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (10, 'Middle plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (11, 'Back plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (12, 'Solitary plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (13, 'Plant in groups');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (14, 'Flowering possible');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (15, 'Land plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (16, 'Also for  paludarium');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (17, 'Bottom plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (18, 'Climbing plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (19, 'Hanging plant');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (20, 'Epiphyt');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (21, 'Cactus');
+INSERT INTO plantcharacteristic (id, inenglish) VALUES (22, 'Pondplant');
+
 CREATE TABLE plants
 (
 	plantid INT(32) unsigned NOT NULL auto_increment,
+	plantgroupid INT(32) unsigned NOT NULL,
+	plantgrowthid INT(32) unsigned,
+	minlightid INT(32) unsigned,
+	maxlightid INT(32) unsigned,
 
+	genus VARCHAR(250) NOT NULL,
+    species VARCHAR(250) NOT NULL,
+	germanTradename VARCHAR(512),
+    englishTradename VARCHAR(512),
+    danishTradename VARCHAR(512),
+    synonyms TEXT,
+    origin TEXT,
+    height VARCHAR(75),
+	width VARCHAR(75),
+	gh VARCHAR(75),
+	ph VARCHAR(150),
+	temperaturerange VARCHAR(150),
+	bottomtype VARCHAR(75),
+	substratefertilisor TINYINT(1) NOT NULL DEFAULT 0,
+	fluidfertilisor TINYINT(1) NOT NULL DEFAULT 0,
+	co2 TINYINT(1) NOT NULL DEFAULT 0,
+
+
+	INDEX (genus),
+	INDEX (genus, species),
+	FOREIGN KEY (plantgroupid) REFERENCES plantgroup (id),
+	FOREIGN KEY (plantgrowthid) REFERENCES plantgrowth (plantgrowthid),
+	FOREIGN KEY (minlightid) REFERENCES light (lightid),
+	FOREIGN KEY (maxlightid) REFERENCES light (lightid),
 	primary key (plantid)
+);
+
+CREATE TABLE plant2plantcare
+(
+	plantid INT(32) unsigned NOT NULL,
+	plantcareid INT(32) unsigned NOT NULL,
+
+	FOREIGN KEY (plantid) REFERENCES plants (plantid),
+	FOREIGN KEY (plantcareid) REFERENCES plantcare (plantcareid),
+	PRIMARY KEY (plantid, plantcareid)
+);
+
+CREATE TABLE plant2characteristic
+(
+	plantid INT(32) unsigned NOT NULL,
+	characteristicidid INT(32) unsigned NOT NULL,
+
+	FOREIGN KEY (plantid) REFERENCES plants (plantid),
+	FOREIGN KEY (characteristicidid) REFERENCES plantcharacteristic (id),
+	PRIMARY KEY (plantid, characteristicidid)
 );
 
 CREATE TABLE fishImage
