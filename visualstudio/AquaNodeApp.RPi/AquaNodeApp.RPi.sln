@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaNodeApp.RPi", "AquaNodeApp.RPi\AquaNodeApp.RPi.csproj", "{A9D74402-681F-4FB3-81B5-246274EF554A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaNode.Database.RPi", "..\AquaNode.Database.RPi\AquaNode.Database.RPi.csproj", "{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aqualog2aquanode", "..\aqualog2aquanode\aqualog2aquanode\aqualog2aquanode.csproj", "{6460F8E9-11B1-46D4-8551-0628FC221F62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Debug|x86.ActiveCfg = Debug|x86
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Debug|x86.Build.0 = Debug|x86
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Release|x86.ActiveCfg = Release|x86
+		{A9D74402-681F-4FB3-81B5-246274EF554A}.Release|x86.Build.0 = Release|x86
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Debug|x86.ActiveCfg = Debug|x86
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Debug|x86.Build.0 = Debug|x86
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Release|Mixed Platforms.Build.0 = Release|x86
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Release|x86.ActiveCfg = Release|x86
+		{CD296ADB-5A0E-46FA-8EF5-68B8FC90FBB2}.Release|x86.Build.0 = Release|x86
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6460F8E9-11B1-46D4-8551-0628FC221F62}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
