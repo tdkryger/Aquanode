@@ -75,9 +75,10 @@ def parseSerialData(data):
         nodeId = parts[1]
         disolvedOxygen = checkSensorData(parts[2])
         temperature = checkSensorData(parts[3])
-        currentPWM1 = checkSensorData(parts[5])
-        currentPWM2 = checkSensorData(parts[6])
-        currentPWM3 = checkSensorData(parts[7])
+        currentPWM1 = checkSensorData(parts[4])
+        currentPWM2 = checkSensorData(parts[5])
+        currentPWM3 = checkSensorData(parts[6])
+        currentPWM4 = checkSensorData(parts[7])
         ph = checkSensorData(parts[8])
         electricalConductivity = checkSensorData(parts[9])
         salinity = checkSensorData(parts[10])
@@ -88,8 +89,8 @@ def parseSerialData(data):
         con = mdb.connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWD, 'aquanode');
         with con:
             cur = con.cursor()
-            sqlInsert = ''.join(["INSERT INTO `nodeData`(`nodeid`,`pwm1`,`pwm2`,`pwm3`,`temperature`,`disolvedOxygen`,`pH`,`electricalConductivity`,`salinity`,`gravityOfSeawater`,`totalDissolvedSolids`) VALUES (",
-                nodeId, ",", currentPWM1, ",", currentPWM2, ",", currentPWM2, ",", temperature, ",", disolvedOxygen, ",", ph, ",", electricalConductivity, ",", salinity, ",", gravityOfSeawater, ",", totalDissolvedSolids, ");"])
+            sqlInsert = ''.join(["INSERT INTO `nodeData`(`nodeid`,`pwm1`,`pwm2`,`pwm3`,`pwm4`,`temperature`,`disolvedOxygen`,`pH`,`electricalConductivity`,`salinity`,`gravityOfSeawater`,`totalDissolvedSolids`) VALUES (",
+                nodeId, ",", currentPWM1, ",", currentPWM2, ",", currentPWM3, ",", currentPWM4, ",", temperature, ",", disolvedOxygen, ",", ph, ",", electricalConductivity, ",", salinity, ",", gravityOfSeawater, ",", totalDissolvedSolids, ");"])
             cur.execute(sqlInsert)
 
 

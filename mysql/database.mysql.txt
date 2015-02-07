@@ -45,6 +45,7 @@ CREATE TABLE nodeData
 	pwm1 int(11) default 0,
 	pwm2 int(11) default 0,
 	pwm3 int(11) default 0,
+	pwm4 INT(11) default 0,
 	temperature decimal(9,2) default 0,
 	disolvedOxygen decimal(9,2) default 0,
 	pH decimal(9,2) default 0,
