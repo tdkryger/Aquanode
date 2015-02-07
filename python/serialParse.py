@@ -123,7 +123,7 @@ while True:
             today = datetime.datetime.utcnow()
             dateTimePart = today.strftime("%H%M%s%Y%m%d")
             #TODO: Get the 2 sets of timezone data from mysql
-            returnString = dateTimePart + DEFAULT_CEST_STRING + DEFAULT_CET_STRING +'\n'
+            returnString = SERIAL_CMD_TIME_UPDATE + dateTimePart + DEFAULT_CEST_STRING + DEFAULT_CET_STRING +'\n'
             print("Sending string to Arduino: " + returnString)
             ser.write(unicode(returnString))
             ser.flush() # it is buffering. required to get the data out *now*
