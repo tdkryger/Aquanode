@@ -5,7 +5,7 @@
 
 import serial
 import const
-import argparse
+#import argparse
 import datetime
 import MySQLdb as mdb
 import sys
@@ -13,9 +13,9 @@ import sys
 
 DODEBUG = 1
 
-parser = argparse.ArgumentParser()
-parser.add_argument("serialName", help="The name of the serial port")
-args = parser.parse_args()
+#parser = argparse.ArgumentParser()
+#parser.add_argument("serialName", help="The name of the serial port")
+#args = parser.parse_args()
 
 # Serial commands
 SERIAL_CMD_CONFIG_REQUEST               = 'C'
@@ -32,9 +32,7 @@ MYSQL_SERVER                            = "localhost"
 MYSQL_USER                              = "anuser"
 MYSQL_PASSWD                            = "mWZwbVCruMsh"
 
-serName = args.serialName 
-if serName == ""
-    serName = '/dev/tty.usbmodem1d11'
+serName = "/dev/ttyACM0"
 
 def checkForNodeConfig(nodeid):
     con = mdb.connect(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWD, 'aquanode');
