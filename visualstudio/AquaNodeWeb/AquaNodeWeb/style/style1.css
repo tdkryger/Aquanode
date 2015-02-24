@@ -1,0 +1,25 @@
+﻿
+h1 {
+    text-align:center;
+    font-size: xx-large;
+}
+
+body {
+    background-color: mediumaquamarine;
+    
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px;
+    text-align: left;
+}
+
+th {
+    font-size: larger;
+}
+
