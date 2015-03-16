@@ -4,7 +4,8 @@ import time
 locations=[
     'COM3',
     'COM4',
-    '/dev/ttyACM0'
+    '/dev/ttyACM0',
+    '/dev/ttyAMA0',
     '/dev/ttyUSB0',
     '/dev/ttyUSB1',
     '/dev/ttyUSB2',
