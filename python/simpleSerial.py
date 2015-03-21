@@ -26,10 +26,17 @@ def local_time_offset(t=None):
     else:
         return -time.timezone
 
-
-#serName = "COM4"
-#serName = "/dev/ttyACM0"
-
+def handleSerialData():
+    while True:
+        serialString = arduino.readline()
+        if serialString:
+            print("Datastring: " + serialString)
+            if serialString.startswith('t'):
+                ticks = time.time() + local_time_offset()
+                returnString = 'T' + str(int(ticks)) + "TTTTT"
+                print("\t\tReturnstring: " + returnString)
+                arduino.write(returnString)
+                
 for device in locations:
     try:
         print "Trying...",device
@@ -38,9 +45,6 @@ for device in locations:
     except:
         print "Failed to connect on",device
 
-
-
-#arduino =  serial.Serial(serName, 115200, timeout=1)
 while True:
     serialString = arduino.readline()
     if serialString:
@@ -50,6 +54,7 @@ while True:
             returnString = 'T' + str(int(ticks)) + "TTTTT"
             print("\t\tReturnstring: " + returnString)
             arduino.write(returnString)
-            #arduino.flush()
+
+        
             
         
